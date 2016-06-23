@@ -39,9 +39,6 @@ public class BasePresenter<V, M extends BaseModel> extends UtilPresenter {
         model = UtilModel.getModelInstance(this.getClass());
     }
 
-    /**
-     * activity$OnDestory的回调
-     */
     public void onDestroyView() {
     }
 

@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.yanyuanquan.android.automvp.presenter.BasePresenter;
 
@@ -16,15 +18,17 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = BasePresenter.getInstance(this.getClass());
-        presenter.onPostCreate(this);
 
+        Log.e("zjw"," onCreate   ");
     }
-
 
     @Override
-    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        Log.e("zjw"," onPostCreate   ");
+        presenter.onPostCreate(this);
     }
+
 
     @Override
     protected void onDestroy() {

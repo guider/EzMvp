@@ -7,7 +7,8 @@ import com.yanyuanquan.android.automvp.model.BaseModel;
 
 public class MainModel extends BaseModel {
 
-    public String getName() {
-        return "hello world";
+
+    public Object getName() {
+        return " 当前时间  ---->>> "+ System.currentTimeMillis();
     }
 }

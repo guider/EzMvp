@@ -13,20 +13,20 @@ public class UtilModel {
 
     protected static HashMap<Class<?>, BaseModel> modelSet = new HashMap<>();
 
-    protected static <T extends BaseModel> T getModel(Class<?> clz) {
-        T model = (T) modelSet.get(clz);
+    protected static <M extends BaseModel> M getModel(Class<?> clz) {
+        M model = (M) modelSet.get(clz);
         if (model == null) {
             model = createModel(clz);
         }
         return model;
     }
 
-    private static <T extends BaseModel> T createModel(Class<?> clz) {
+    private static <M extends BaseModel> M createModel(Class<?> clz) {
         if (clz == null || !BaseModel.class.isAssignableFrom(clz)) {
             throw new IllegalArgumentException("  model mast exten baseModel ");
         }
         try {
-            T model = (T) clz.newInstance();
+            M model = (M) clz.newInstance();
             modelSet.put(clz, model);
             return model;
         } catch (InstantiationException e) {
@@ -37,12 +37,12 @@ public class UtilModel {
         throw new IllegalArgumentException("  model mast exten baseModel ");
     }
 
-    public  static  <E extends BaseModel> E getModelInstance(Class<?> clz) {
+    public  static  <M extends BaseModel> M getModelInstance(Class<?> clz) {
         Model model = clz.getAnnotation(Model.class);
         if (model != null) {
             try {
-                Class<E> aClass = (Class<E>) model.value();
-                return (E) aClass.newInstance();
+                Class<M> aClass = (Class<M>) model.value();
+                return (M) aClass.newInstance();
             } catch (InstantiationException e) {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
